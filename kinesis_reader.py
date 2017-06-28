@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 """
-Usage: %(scriptName)s --stream-name=STREAM_NAME --limit=LIMIT
+Usage: %(scriptName)s --help
 
 This script pulls records from AWS kinesis stream for debugging purposes.
 """
-import optfunc
+import click
 import boto3
 import time
 import json
 
-@optfunc.run
-def get_stream_data(stream_name=None, limit=2):
+@click.command()
+@click.argument('stream_name', required=True)
+@click.option('--limit', default=2, help='Number of records to pull from each available shard')
+def get_stream_data(stream_name, limit=2):
     client = boto3.client('kinesis')
 
     if stream_name:
@@ -30,3 +32,5 @@ def get_stream_data(stream_name=None, limit=2):
     else:
         print "Need stream name !!!"
 
+if __name__ == '__main__':
+    get_stream_data()
