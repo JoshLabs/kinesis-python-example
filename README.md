@@ -14,6 +14,9 @@ python kinesis_reader.py --help
 ```bash
 python kinesis_reader.py <kinesis-stream_name> --limit=<limit>
 ```
+```bash
+python kinesis_reader.py <kinesis-stream_name> --limit=<limit> --timedelta=90
+```
 
 ## Using with AWS credentials
 ```bash
